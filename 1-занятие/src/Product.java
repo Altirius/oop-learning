@@ -1,5 +1,7 @@
 package src;
 
+import src.Helpers.Input;
+
 public class Product {
     private String name;
     private double price;
@@ -15,6 +17,16 @@ public class Product {
 
     public double getPrice() {
         return price;
+    }
+
+    protected String inputName() {
+        System.out.print("Введите название: ");
+        return Input.INSTANCE.stream.nextLine();
+    }
+
+    protected Double inputPrice() {
+        System.out.print("Введите стоимость: ");
+        return Input.INSTANCE.stream.nextDouble();
     }
 
     @Override
