@@ -1,18 +1,88 @@
 package src;
 
-import java.util.ArrayList;
-import src.Enums.Volume;
+import java.util.HashMap;
 
-public class VendingMachine {
-	private ArrayList<ProductSet<? extends Product>> products = new ArrayList<>();
+import src.Enums.ProductType;
+import src.Enums.UserAction;
+import src.Helpers.Input;
+import src.Interfaces.IMachine;
+import src.Products.Chips;
+import src.Products.Cookie;
+import src.Products.Soda;
 
-	VendingMachine() {
+public class VendingMachine implements IMachine {
+	private HashMap<ProductType, ProductSet<? extends Product>> products = new HashMap<>();
+	private UserAction action = UserAction.NOTHING;
 
+	public void start() {
+		this.messageLoop();
 	}
 
-	public void addProduct() {
-		this.products.add(new ProductSet<Soda>(new Soda("Cola", 100, Volume.L05), 30));
-		// new ProductSet<Soda>(new Soda("Cola", 100, Volume.L05), 30);
+	private void messageLoop() {
+		while (!isTimeToLeave()) {
+			this.action = this.askAndGetUserAction();
+			this.handleAction(action);
+		}
+	}
+
+	private boolean isTimeToLeave() {
+		return this.action == UserAction.EXIT;
+	}
+
+	private UserAction askAndGetUserAction() {
+		this.askUserAction();
+		return UserAction.getEntityByKey(Input.INSTANCE.stream.nextInt());
+	}
+
+	private void askUserAction() {
+		UserAction[] options = UserAction.values();
+
+		for (int i = 1; i < options.length; i++) {
+			System.out.println(options[i].getMenuItemString());
+		}
+	}
+
+	private void handleAction(UserAction action) {
+		switch (action) {
+			case ADD_PRODUCT:
+				this.handleAddProduct();
+			default:
+				break;
+		}
+	}
+
+	private void handleAddProduct() {
+		ProductType type = inputProductType();
+		ProductSet<? extends Product> product = inputProduct(type);
+		this.products.put(type, product);
+	}
+
+	private ProductType inputProductType() {
+		ProductType[] options = ProductType.values();
+
+		for (int i = 0; i < options.length; i++) {
+			System.out.println(options[i].getMenuItemString());
+		}
+
+		return ProductType.getEntityByKey(Input.INSTANCE.stream.nextInt());
+	}
+
+	private ProductSet<? extends Product> inputProduct(ProductType type) {
+		switch(type) {
+			case SODA:
+				return new ProductSet<Soda>(Soda.create(), inputQty());
+			case COOKIE:
+				return new ProductSet<Cookie>(Cookie.create(), inputQty());
+			case CHIPS:
+				return new ProductSet<Chips>(Chips.create(), inputQty());
+			default:
+				return null;
+		}
+	}
+
+	private Integer inputQty() {
+		System.out.print("Введите количество: ");
+		return Input.INSTANCE.stream.nextInt();
 	}
 
 

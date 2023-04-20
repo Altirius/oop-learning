@@ -19,12 +19,12 @@ public class Product {
         return price;
     }
 
-    protected String inputName() {
+    protected static String inputName() {
         System.out.print("Введите название: ");
-        return Input.INSTANCE.stream.nextLine();
+        return Input.INSTANCE.stream.next();
     }
 
-    protected Double inputPrice() {
+    protected static Double inputPrice() {
         System.out.print("Введите стоимость: ");
         return Input.INSTANCE.stream.nextDouble();
     }

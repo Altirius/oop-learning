@@ -17,11 +17,11 @@ public class ProductSet<T extends Product>  {
 		return this.qty;
 	}
 
-	public void increaseQty() {
-		this.qty++;
+	public void increaseQty(Integer qty) {
+		this.qty += qty;
 	}
 
-	public void decreaseQty() {
-		this.qty--;
+	public void decreaseQty(Integer qty) {
+		this.qty -= qty;
 	}
 }

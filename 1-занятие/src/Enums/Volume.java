@@ -17,7 +17,7 @@ public enum Volume implements ISelectebleItem {
 
 	static public Volume getEntityByKey(Integer key) {
 		Volume[] options = Volume.values();
-		for (int i = 1; i < options.length; i++) {
+		for (int i = 0; i < options.length; i++) {
 			if (options[i].getKey() == key) {
 				return options[i];
 			}

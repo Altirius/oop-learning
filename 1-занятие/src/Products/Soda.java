@@ -1,13 +1,12 @@
-package src;
+package src.Products;
 
+import src.Product;
 import src.Enums.Volume;
 import src.Helpers.Input;
-import src.Interfaces.ICreatable;
-
-public class Soda extends Product implements ICreatable<Soda> {
+public class Soda extends Product {
 	private Volume volume;
 
-	Soda(String name, double price, Volume volume) {
+	private Soda(String name, double price, Volume volume) {
 		super(name, price);
 		this.volume = volume; 
 	}
@@ -16,17 +15,17 @@ public class Soda extends Product implements ICreatable<Soda> {
 		return this.volume;
 	}
 
-	public Soda create() {
-		String name = inputName();
-		Double price = inputPrice();
-		Volume volume = inputVolume();
+	public static Soda create() {
+		String name = Product.inputName();
+		Double price = Product.inputPrice();
+		Volume volume = Soda.inputVolume();
 		return new Soda(name, price, volume);
 	}
 
-	private Volume inputVolume() {
+	private static Volume inputVolume() {
 		Volume[] options = Volume.values();
 
-		for (int i = 1; i < options.length; i++) {
+		for (int i = 0; i < options.length; i++) {
 			System.out.println(options[i].getMenuItemString());
 		}
 

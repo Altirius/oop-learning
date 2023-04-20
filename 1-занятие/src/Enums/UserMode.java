@@ -2,15 +2,15 @@ package src.Enums;
 
 import src.Interfaces.ISelectebleItem;
 
-public enum ProductType implements ISelectebleItem {
-	SODA(1, "Газировка"),
-	COOKIE(2, "Печенье"),
-	CHIPS(3, "Чипсы");
+public enum UserMode implements ISelectebleItem {
+	ALL(0, "Все"),
+	CUSTOMER(1, "Покупатель"),
+	ADMIN(2, "Администратор");
 
 	private Integer key;
 	private String title;
 
-	ProductType(Integer key, String title) {
+	UserMode(Integer key, String title) {
 		this.key = key;
 		this.title = title;
 	}
