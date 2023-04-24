@@ -1,4 +1,4 @@
-package src;
+package main;
 
 public class ProductSet<T extends Product>  {
 	private T product;

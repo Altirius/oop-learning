@@ -1,4 +1,4 @@
-import src.VendingMachine;
+import src.main.VendingMachine;
 
 public class Program {
 	static public void main(String[] args) {

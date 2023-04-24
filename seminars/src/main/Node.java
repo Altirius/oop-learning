@@ -1,4 +1,4 @@
-package src;
+package main;
 
 public class Node<T> {
 	private T data;
