@@ -2,8 +2,8 @@ package src;
 
 import java.util.Iterator;
 
-class ProductList<T> implements Iterable<T> {
-	Node<T> head, tail;
+class ProductList<T extends Product> implements Iterable<T> {
+	private Node<T> head, tail;
 
 	public void add(T data) {
 		Node<T> node = new Node<>(data, null);
@@ -24,7 +24,7 @@ class ProductList<T> implements Iterable<T> {
 	}
 
 	public Iterator<T> iterator() {
-		return new ListIterator<T>(this);
+		return new ProductListIterator<T>(this);
 	}
 }
 

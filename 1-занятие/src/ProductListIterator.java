@@ -2,10 +2,10 @@ package src;
 
 import java.util.Iterator;
 
-public class ListIterator<T> implements Iterator<T> {
+public class ProductListIterator<T extends Product> implements Iterator<T> {
 	Node<T> current;
 
-	public ListIterator(ProductList<T> list) {
+	public ProductListIterator(ProductList<T> list) {
 		current = list.getHead();
 	}
 
