@@ -14,7 +14,21 @@ public class VendingMachine implements IMachine {
 	private HashMap<ProductType, ProductSet<? extends Product>> products = new HashMap<>();
 	private UserAction action = UserAction.NOTHING;
 
+	private ProductList<Soda> sodaList;
+
 	public void start() {
+
+		System.out.println("Start iteration testing");
+		this.sodaList.add(Soda.create());
+		this.sodaList.add(Soda.create());
+		this.sodaList.add(Soda.create());
+
+		for (Soda soda : this.sodaList) {
+			System.out.println(soda);
+		}
+
+		System.out.println("End iteration testing");
+
 		this.messageLoop();
 	}
 
